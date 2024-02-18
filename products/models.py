@@ -123,7 +123,7 @@ class Sku(models.Model):
         if self.cost_price != 0:
             return (self.platform_commission / self.cost_price) * 100
         return 0
-
+    
     class Meta:
         db_table = "sku"
         ordering = []

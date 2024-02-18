@@ -1,6 +1,10 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
+from django.db.models import Count
+from django.http import JsonResponse
+from categories.models import Category
+
 from rest_framework.status import (
     HTTP_200_OK, 
     HTTP_404_NOT_FOUND, 
@@ -67,3 +71,21 @@ def create_sku(request):
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def active_categories_with_sku_count(request):
+    active_categories = Category.objects.filter(products__skus__status=1).annotate(sku_count=Count('products__skus'))
+    data = [{"category_name": category.name, "sku_count": category.sku_count} for category in active_categories]
+    return JsonResponse(data, status=False)
+    # for category in active_categories:
+    #     print(f"Category: {category.name}, SKU Count: {category.sku_count}")
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def all_skus_with_categories(request):
+    skus = Sku.objects.select_related('product__category')
+    serializer = SkuSerializer(skus, many=True)
+    return JsonResponse(serializer.data, safe=False)
+    # for sku in skus:
+    #     print(f"SKU: {sku.id}, Product: {sku.product.name}, Category: {sku.product.category.name}")
