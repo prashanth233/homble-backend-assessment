@@ -26,8 +26,9 @@ class SkuInline(admin.TabularInline):
 
 @admin.register(Sku)
 class SkuAdmin(admin.ModelAdmin):
-    list_display = ("product", "size", "selling_price")
+    list_display = ("product", "size", "selling_price","measurement_unit", "platform_commission", "cost_price", "status")
     search_fields = ("product__name",)
+    list_filter = ("status",)
 
 class ProductInline(admin.StackedInline):
     """
