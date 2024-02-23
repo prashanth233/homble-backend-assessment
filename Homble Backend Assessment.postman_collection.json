@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "4a709b88-1d25-4f8a-910b-88f601daceac",
+		"name": "Homble Backend Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33028067"
+	},
+	"item": [
+		{
+			"name": "Products list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/products/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Refrigerated Products",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "headerPrefix",
+				"value": "Token",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "staff-token",
+			"value": "1a66627570137de385c36dfe5cc23ea6ae1accc2",
+			"type": "string"
+		},
+		{
+			"key": "customer-token",
+			"value": "32e6bc7f3de1ee132e5c7f151d56ce0d9267a829",
+			"type": "string"
+		}
+	]
+}
